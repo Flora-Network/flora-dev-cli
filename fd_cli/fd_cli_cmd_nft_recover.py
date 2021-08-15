@@ -66,7 +66,7 @@ def fd_cli_cmd_nft_recover(
 
     delay_u64: uint64 = uint64(delay)
     launcher_hash_b32: bytes32 = bytes32(hexstr_to_bytes(launcher_hash))
-    contract_hash_b32: bytes32 = bytes32(hexstr_to_bytes(decode_puzzle_hash(pool_contract_address)))
+    contract_hash_b32: bytes32 = bytes32(decode_puzzle_hash(pool_contract_address))
 
     program_puzzle_hex: str = None
 
