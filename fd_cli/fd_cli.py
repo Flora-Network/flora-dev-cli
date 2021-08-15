@@ -22,6 +22,10 @@ from fd_cli.fd_cli_cmd_nft_recover import (
     fd_cli_cmd_nft_recover
 )
 
+from fd_cli.fd_cli_cmd_version import (
+    fd_cli_cmd_version
+)
+
 
 @click.group(
     context_settings={}
@@ -196,6 +200,19 @@ def fd_cli_nft_recover(
         cert_path=cert_path,
         cert_key_path=cert_key_path,
         cert_ca_path=cert_ca_path
+    )
+
+
+@fd_cli.command(
+    'version',
+    help='Retrieve version.'
+)
+@click.pass_context
+def fd_cli_version(
+        ctx: click.Context
+) -> None:
+    fd_cli_cmd_version(
+        ctx=ctx
     )
 
 
