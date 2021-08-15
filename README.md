@@ -21,13 +21,12 @@ export FD_CLI_WT_DB_PATH=/root/.flora/mainnet/wallet/db/blockchain_wallet_v1_mai
 
 # Set env var to launcher id of NFT plot.
 export LAUNCHER_HASH=aaa0cbae497933a6c029a3819759fe148829dfde0316cb0512ccad23edce6aaa
-# Set env var to pool_contract_puzzle_hash. 
-# This Bench32 decoded address of NFT plot, the one with comment "USE ONLY FOR PLOTTING".
-export CONTRACT_HASH=eeeeb79855585a0481e7cc5b653ed9720b894a2173dce927cce90eebfcd3f000
+# Set env var to pool_contract_address. 
+export POOL_CONTRACT_ADDRESS=xch13rht0xz4tpdqfq08e3dk20kewg9cjj3pw0wwjf7vay8whlxn7ppqapeqhz
 
 fd-cli nft-recover \
   -l "$LAUNCHER_HASH" \
-  -c "$CONTRACT_HASH" \
+  -p "$POOL_CONTRACT_ADDRESS" \
   -nh 127.0.0.1 \
   -np 18755 \
   -ct /root/.flora/mainnet/config/ssl/full_node/private_full_node.crt \
