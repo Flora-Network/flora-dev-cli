@@ -20,7 +20,6 @@ pip install -e . --extra-index-url https://pypi.chia.net/simple/
 ```
 
 
-
 # NFT 7/8 reward recovery
 
 ```shell
