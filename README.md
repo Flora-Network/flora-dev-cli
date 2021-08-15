@@ -3,6 +3,7 @@
 ```shell
 
 git clone https://github.com/Flora-Network/fd-cli.git
+cd fd-cli
 
 python3 -m venv venv
 source venv/bin/activate
