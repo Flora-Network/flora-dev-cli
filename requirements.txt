@@ -1,0 +1,4 @@
+click~=7.1.2
+chia-blockchain~=1.2.3
+setuptools~=57.0.0
+requests~=2.26.0
