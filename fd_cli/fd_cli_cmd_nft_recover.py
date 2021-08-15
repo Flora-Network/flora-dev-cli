@@ -180,6 +180,6 @@ def fd_cli_cmd_nft_recover(
         return
 
     fd_cli_print_raw('', pre=pre)
-    fd_cli_print_raw(f'Send network transactions to recover a total of '
+    fd_cli_print_raw(f'Sent transactions to recover a total of '
                      f'{balance_recovered / (10 ** 12):.12f} coins.', pre=pre)
     fd_cli_print_raw(f'Coins should be spendable in few network confirmations.', pre=pre)
