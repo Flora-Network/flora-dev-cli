@@ -102,7 +102,7 @@ def fd_cli_cmd_nft_recover(
         f"SELECT * "
         f"FROM coin_record "
         f"WHERE spent == 0 "
-        # f"AND timestamp <= strftime('%s', datetime('now', '-{delay} unixepoch')) "
+        f"AND timestamp <= (strftime('%s', 'now') - {delay}) "
         f"AND puzzle_hash LIKE '{contract_hash}' "
         f"ORDER BY timestamp DESC")
 
