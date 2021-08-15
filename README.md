@@ -6,6 +6,7 @@ git clone https://github.com/Flora-Network/fd-cli.git
 
 python3 -m venv venv
 source venv/bin/activate
+pip install -e . --extra-index-url https://pypi.chia.net/simple/
 ```
 
 # NFT 7/8 reward recovery
