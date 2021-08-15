@@ -143,8 +143,8 @@ def fd_cli_coin(
     type=str
 )
 @click.option(
-    '-c',
-    '--contract_hash',
+    '-p',
+    '--pool_contract_address',
     required=True,
     type=str
 )
@@ -183,7 +183,7 @@ def fd_cli_nft_recover(
         ctx: click.Context,
         delay: int,
         launcher_hash: str,
-        contract_hash: str,
+        pool_contract_address: str,
         node_host: str,
         node_port: int,
         cert_path: str,
@@ -194,7 +194,7 @@ def fd_cli_nft_recover(
         ctx=ctx,
         delay=delay,
         launcher_hash=launcher_hash,
-        contract_hash=contract_hash,
+        pool_contract_address=pool_contract_address,
         node_host=node_host,
         node_port=node_port,
         cert_path=cert_path,

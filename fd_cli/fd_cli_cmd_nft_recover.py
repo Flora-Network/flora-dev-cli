@@ -8,6 +8,10 @@ from chia.pools.pool_puzzles import (
     create_p2_singleton_puzzle
 )
 
+from chia.util.bech32m import (
+    decode_puzzle_hash
+)
+
 from chia.util.byte_types import (
     hexstr_to_bytes
 )
@@ -49,7 +53,7 @@ def fd_cli_cmd_nft_recover(
         ctx: click.Context,
         delay: int,
         launcher_hash: str,
-        contract_hash: str,
+        pool_contract_address: str,
         node_host: str,
         node_port: int,
         cert_path: str,
@@ -62,7 +66,8 @@ def fd_cli_cmd_nft_recover(
 
     delay_u64: uint64 = uint64(delay)
     launcher_hash_b32: bytes32 = bytes32(hexstr_to_bytes(launcher_hash))
-    contract_hash_b32: bytes32 = bytes32(hexstr_to_bytes(contract_hash))
+    contract_hash_b32: bytes32 = decode_puzzle_hash(pool_contract_address)
+    contract_hash_hex: str = contract_hash_b32.hex()
 
     program_puzzle_hex: str = None
 
@@ -103,7 +108,7 @@ def fd_cli_cmd_nft_recover(
         f"FROM coin_record "
         f"WHERE spent == 0 "
         f"AND timestamp <= (strftime('%s', 'now') - {delay}) "
-        f"AND puzzle_hash LIKE '{contract_hash}' "
+        f"AND puzzle_hash LIKE '{contract_hash_hex}' "
         f"ORDER BY timestamp DESC")
 
     coin_records: list = db_bc_cursor.fetchall()
@@ -129,7 +134,7 @@ def fd_cli_cmd_nft_recover(
             'coin': {
                 'amount': coin_amount,
                 'parent_coin_info': coin_parent,
-                'puzzle_hash': contract_hash
+                'puzzle_hash': contract_hash_hex
             },
             'puzzle_reveal': program_puzzle_hex,
             'solution': coin_solution_hex
