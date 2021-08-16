@@ -4,13 +4,13 @@
 git clone https://github.com/Flora-Network/fd-cli.git
 ```
 ```shell
+cd fd-cli
+```
+```shell
 python3 -m venv venv
 ```
 ```shell
 source venv/bin/activate
-```
-```shell
-cd fd-cli
 ```
 ```shell
 pip install -e . --extra-index-url https://pypi.chia.net/simple/
