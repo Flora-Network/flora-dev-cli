@@ -1,6 +1,6 @@
 # Install Español
 
-(Estas lineas las pegamos una a una en la cmd):
+(Estas lineas las pegamos una a una en la terminal):
 
 ```shell
 #Clonamos el repo de Github
