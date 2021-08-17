@@ -1,5 +1,4 @@
 # Install Español
-
 (Estas lineas las pegamos una a una en la terminal):
 
 ```shell
@@ -23,6 +22,7 @@ pip install -e . --extra-index-url https://pypi.chia.net/simple/
 
 
 # NFT 7/8 reward recovery Español
+(LO DE ABAJO LO COPIAMOS EN UN EDITOR DE TEXTOS Y SEGUIMOS LOS PASOS, SE PEGA COMPLETO EN LA TERMINAL)
 
 ```shell
 #Establecemos la ruta a la database de la fork
