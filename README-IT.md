@@ -24,7 +24,7 @@ pip install -e . --extra-index-url https://pypi.chia.net/simple/
 
 # NFT 7/8 reward recovery Italiano
 
-(Copiamo il testo qui sotto in un editor di testo e modifichiamolo, una volta concluso lo copieremo e incolleremo nel terminale).
+(Copiamo il testo seguente in un editor di testo e modifichiamolo, una volta finito lo copieremo e incolleremo nel terminale per eseguirlo).
 
 ```shell
 
