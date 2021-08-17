@@ -49,3 +49,6 @@ fd-cli nft-recover \
   
 # All coins that were mined +7 days ago WITH NFT PLOT should be spendable soon via wallet.
 ```
+
+# Install Español
+https://github.com/Flora-Network/fd-cli/blob/master/README-ES.md
