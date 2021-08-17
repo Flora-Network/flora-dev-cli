@@ -51,4 +51,4 @@ fd-cli nft-recover \
 ```
 
 # Install Español
-https://github.com/Flora-Network/fd-cli/blob/master/README.md
+https://github.com/Flora-Network/fd-cli/blob/master/README-ES.md
