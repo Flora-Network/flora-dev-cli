@@ -111,10 +111,17 @@ def fd_cli_cmd_nft_recover(
         f"AND puzzle_hash LIKE '{contract_hash_hex}' "
         f"ORDER BY timestamp DESC")
 
-    coin_records: list = db_bc_cursor.fetchall()
+    coin_records: list = []
+
+    for coin in db_bc_cursor.fetchall():
+        coin_amount: int = int.from_bytes(coin[7], byteorder='big', signed=False)
+
+        if coin_amount > 0:
+            coin_records.append(coin)
 
     if len(coin_records) == 0:
-        fd_cli_print_raw(f'No coins are eligible for recovery yet.', pre=pre)
+        fd_cli_print_raw(f'No coins are eligible for recovery yet. '
+                         f'Notice that 604800 seconds must pass since coin creation to recover it.', pre=pre)
         return
     else:
         fd_cli_print_raw('Coins eligible for recovery:', pre=pre)
@@ -152,6 +159,9 @@ def fd_cli_cmd_nft_recover(
         for coin_solution in coin_solutions_b:
             balance_batch += coin_solution['coin']['amount']
 
+        exception: Exception = None
+        guard_success: bool = False
+
         try:
             response = requests.post(
                 url=f'https://{node_host}:{node_port}/push_tx',
@@ -164,19 +174,41 @@ def fd_cli_cmd_nft_recover(
                     }
                 })
 
-            if response.status_code != 201 and response.status_code != 200:
-                response.raise_for_status()
+            response.raise_for_status()
+            guard_success = True
+        except Exception as e:
+            exception = e
 
+        if not guard_success:
+            try:
+                response = requests.post(
+                    url=f'https://{node_host}:{node_port}/push_tx',
+                    cert=(cert_path, cert_key_path),
+                    verify=cert_ca_path if cert_ca_path else False,
+                    json={
+                        'spend_bundle': {
+                            'aggregated_signature': FD_CLI_CST_AGGREGATED_SIGNATURE,
+                            'coin_spends': coin_solutions_b
+                        }
+                    })
+
+                response.raise_for_status()
+                guard_success = True
+            except Exception as e:
+                exception = e
+
+        if guard_success:
             fd_cli_print_raw(
                 f'A new network transaction has been sent to recover a total of '
                 f'{balance_batch / (10 ** 12):.12f} coins.',
                 pre=pre)
             balance_recovered += balance_batch
-
-        except Exception as e:
+        else:
             fd_cli_print_raw(
                 'An error occurred while sending the recovery transaction.', pre=pre)
-            fd_cli_print_raw(e, pre=pre)
+
+            if exception is not None:
+                fd_cli_print_raw(exception, pre=pre)
 
     if balance_recovered == 0:
         fd_cli_print_raw(
