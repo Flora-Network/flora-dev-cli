@@ -176,7 +176,6 @@ def fd_cli_cmd_nft_recover(
 
             response.raise_for_status()
             guard_success = True
-
         except Exception as e:
             exception = e
 
@@ -195,7 +194,6 @@ def fd_cli_cmd_nft_recover(
 
                 response.raise_for_status()
                 guard_success = True
-
             except Exception as e:
                 exception = e
 
