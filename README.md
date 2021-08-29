@@ -100,7 +100,6 @@ Scrip also accepts various parameters. Please remember that you do not have to p
 
    `./flora_recovery.ps1 -POOL_CONTRACT_ADDRESS [your_pool_contract_address] -LAUNCHER_HASH [your_launcher_id] -blockchains flora, silicoin -sleep 24`
 
-One time recovery of coins for 
 
 # Install Español
 https://github.com/Flora-Network/fd-cli/blob/master/README-ES.md
