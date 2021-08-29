@@ -157,10 +157,9 @@ Do {
         Run-Recovery 
     }
     IF ($sleep-gt 0){
-        [int]$SleepMinutes = $sleep * 60
+        [int]$SleepHours = $sleep * 3600
         Write-log "Running in a loop. Going to sleep for $sleep minutes"
-        Start-Sleep -s $SleepMinutes
+        Start-Sleep -s $SleepHours
     }
-    
     
 } while ($sleep -gt 0)
