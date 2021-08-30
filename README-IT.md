@@ -57,3 +57,48 @@ fd-cli nft-recover \
   
 # I coins che sono stati minati più di 7 giorni fa USANDO PLOT NFT dovrebbero essere spendibili a breve nel wallet.  
 ```
+
+# Script Powershell su Windows
+
+
+## Prerequisiti:
+
+Git per Windows: [Scarica - Git](https://git-scm.com/download/win)
+
+Python per Windows: [Scarica - Python](https://www.python.org/downloads/)
+
+Microsoft Visual C++ Redistributable [Visual C++ Redistributable](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0)
+
+## Utilizzo:
+Lo script è eseguibile anche senza parametri. Ti saranno chiesti al momento il `LAUNCHER_HASH` e il `POOL_CONTRACT_ADDRESS`.
+
+Sono comunque disponibili diversi parametri. Ricorda che non tutti sono necessari poichè con già valori predefiniti. 
+
+
+| Argomento | Descrizione | Tipo | Default | Necessario? |
+| --- | --- | --- | --- | --- | 
+| `-LAUNCHER_HASH [your_launcher_id]` | Launcher ID o NFT che vuoi recuperare. Ottenibile tramite comando "chia plotnft show" su Chia. | `stringa` | Vuoto | Si |
+| `-POOL_CONTRACT_ADDRESS [your_pool_contract_address]` | Pool contract address dell'NFT che vuoi recuperare. Ottenibile tramite comando "chia plotnft show" su Chia. | `stringa` | Vuoto | Si |
+| `-fingerprint [wallet_fingerprint]` | Wallet fingerprint. Se hai solamente un portafoglio/Wallet, il parametro non è necessario e sarà automaticamente usato quello esistente. | `stringa` | Vuoto | No |
+| `-sleep [hours]` | Se specificato eseguirà lo script in un ciclo/loop infinito, ripetendo la recovery in base all'intervallo specificato. | `Intero` | `0` | No |
+| `-nettype [nettype]` | (`mainnet` o `testnet`) Parte del percorso per la cartella della fork in cui sono salvati i dati (ricorda che silicon utilizza la cartella `mainnet`). | `stringa` | `mainnet` | Si |
+| `-blockchains [fork1], [fork2], [fork3]...` | Se non precedentemente specificato la recovery sarà effettuata su `flora`. Elenco di stringhe, accetta più valori saparati da virgola. | `Elenco di stringhe` | `flora` | Si |
+
+
+#### Esempi di utilizzo:
+
+* Recupero delle monete dalla Blockchain Flora:
+
+   `./flora_recovery.ps1 -POOL_CONTRACT_ADDRESS [tuo_pool_contract_address] -LAUNCHER_HASH [tuo_launcher_id]`   
+
+* Recupero delle monete dalla Blockchain Flora con più portafogli/Wallet:
+
+   `./flora_recovery.ps1 -POOL_CONTRACT_ADDRESS [tuo_pool_contract_address] -LAUNCHER_HASH [tuo_launcher_id] -fingerprint [wallet_fingerprint]`   
+
+* Recupero delle monete dalle Blockchain Flora e Silicon:
+
+   `./flora_recovery.ps1 -POOL_CONTRACT_ADDRESS [tuo_pool_contract_address] -LAUNCHER_HASH [tuo_launcher_id] -blockchains flora, silicoin`   
+
+* Recupero delle monete dalle Blockchain Flora e Silicon in loop/ciclo, esegue la recovery ogni 24 ore:
+
+   `./flora_recovery.ps1 -POOL_CONTRACT_ADDRESS [tuo_pool_contract_address] -LAUNCHER_HASH [tuo_launcher_id] -blockchains flora, silicoin -sleep 24`
