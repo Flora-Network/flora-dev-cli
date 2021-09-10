@@ -20,7 +20,8 @@ if __name__ == '__main__':
         ],
         entry_points={
             'console_scripts': [
-                'fd-cli = fd_cli.fd_cli:main'
+                'fd-cli = fd_cli.fd_cli:main',
+                'flora-dev-cli = fd_cli.fd_cli:main'
             ]
         }
     )
